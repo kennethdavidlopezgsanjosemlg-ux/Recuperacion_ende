@@ -4,18 +4,17 @@ public class EmpleadoPorHoras extends Empleado {
 
 	private double pagaExtra;
 	private int mesesProrratea;
-	private boolean esAutonomo;
 
-	public EmpleadoPorHoras(String nombre, double pagaExtra, int mesesProrratea, boolean esAutonomo) {
-		super(nombre);
+	public EmpleadoPorHoras(String nombre, double salarioBase, Boolean autonomo, float irpf, double pagaExtra,
+			int mesesProrratea) {
+		super(nombre, salarioBase, autonomo, irpf);
 		this.pagaExtra = pagaExtra;
 		this.mesesProrratea = mesesProrratea;
-		this.esAutonomo = esAutonomo;
 	}
 
 	public double calcularSalarioBruto(double comisionesMes) {
 		if (comisionesMes < 0) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Las comisiones no pueden ser menor a 0");
 		}
 		return this.salarioBase + comisionesMes;
 
@@ -23,7 +22,7 @@ public class EmpleadoPorHoras extends Empleado {
 
 	@Override
 	public double calcularSalarioNeto() {
-		if (this.esAutonomo == false) {
+		if (this.autonomo == false) {
 			return this.calcularSalarioBruto(pagaExtra, mesesProrratea)
 					- (this.calcularSalarioBruto(pagaExtra, mesesProrratea) * this.irpf);
 
@@ -34,11 +33,12 @@ public class EmpleadoPorHoras extends Empleado {
 	}
 
 	public double calcularSalarioNeto(double comisionesMes) {
-		if (this.esAutonomo == true) {
-			this.calcularSalarioBruto(comisionesMes);
-		}
 
-		return this.calcularSalarioBruto(comisionesMes) - (this.calcularSalarioBruto(comisionesMes) * 7);
+		if (this.autonomo=false) {
+			return this.calcularSalarioBruto(comisionesMes) - (this.calcularSalarioBruto(comisionesMes) * 7);
+		}
+		
+		return this.calcularSalarioBruto(comisionesMes);
 
 	}
 
