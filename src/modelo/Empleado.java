@@ -28,7 +28,16 @@ public abstract class Empleado {
 	// Métodos
 
 	public double calcularSalarioBruto(double pagaExtra, int mesesProrratea) {
-		return (this.salarioBase + pagaExtra) * mesesProrratea;
+		if (pagaExtra < 0) {
+			throw new IllegalArgumentException("La paga extra no puede ser negativa");
+
+		}
+
+		if (mesesProrratea < 0 && mesesProrratea >= 12) {
+			return (this.salarioBase + pagaExtra) * mesesProrratea;
+		} else {
+			throw new IllegalArgumentException("La cantidad de meses debe estar en el rango permitido");
+		}
 
 	}
 
