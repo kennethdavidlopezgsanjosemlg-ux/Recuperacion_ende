@@ -25,6 +25,18 @@ public abstract class Empleado {
         this.irpf=0;
     }
 	
+	// Métodos
+	
+	public double calcularSalarioBruto(double pagaExtra, int mesesProrratea) {
+		
+		return (this.salarioBase + pagaExtra) * mesesProrratea;
+		
+	}
+	
+	public abstract boolean calcularSalarioNeto();
+	
+	// Getters y Setters
+	
     public String getNombre() {
         return nombre;
     }
