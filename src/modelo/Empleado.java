@@ -1,7 +1,9 @@
 package modelo;
-
+/**
+ * @version 1.0
+ */
 public abstract class Empleado {
-
+	
 	private static final int SALARIO_MINIMO_INTERPROFESIONAL = 1221;
 	protected String nombre;
 	protected double salarioBase;
